@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.edu.main.mapper.DomainMapper">
+    <resultMap id="DomainResultMap" type="kr.co.edu.main.entity.Domain">
+        <id property="idx" column="id"/>
+        <result property="domainType" column="DomainType"/>
+        <result property="domainMinSize" column="DomainMinSize"/>
+        <result property="domainMaxSize" column="DomainMaxSize"/>
+        <result property="domainFirst" column="DomainFirst"/>
+        <result property="dictionaryId" column="DictionaryId"/>
+        <collection property="dictionary" resultMap="kr.co.edu.main.mapper.DictionaryMapper.DictionaryResultMap"/>
+    </resultMap>
+
+    <update id="createTable">
+        CREATE TABLE IF NOT EXISTS DomainTable(
+            id SERIAL PRIMARY KEY,
+            DomainType VARCHAR(255) NOT NULL,
+            DomainMinSize INT NOT NULL,
+            DomainMaxSize INT NOT NULL,
+            DomainFirst VARCHAR(255) NOT NULL
+            DictionaryId INT NOT NULL
+            CONSTRAINT fk_spring_DictionaryId REFERENCES Dictionary(id)
+            );
+    </update>
+
+</mapper>

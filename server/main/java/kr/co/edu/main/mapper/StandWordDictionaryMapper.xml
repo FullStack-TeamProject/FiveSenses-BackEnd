@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.edu.main.mapper.StandWordDictionaryMapper">
+    <resultMap id="StandWordDictionaryResultMap" type="kr.co.edu.main.entity.StandWordDictionary">
+        <id property="idx" column="idx"/>
+        <result property="standWordDictionaryNo" column="StandWordDictionaryNo"/>
+        <result property="standWordDictionaryWordName" column="StandWordDictionaryWordName"/>
+        <result property="standWordDictionaryWordEnglish" column="StandWordDictionaryWordEnglish"/>
+    </resultMap>
+
+    <update id="createTable">
+        CREATE TABLE IF NOT EXISTS StandWordDictionary (
+            idx SERIAL PRIMARY KEY,
+            StandWordDictionaryNo INT NOT NULL,
+            StandWordDictionaryWordName VARCHAR(255) NOT NULL,
+            StandWordDictionaryWordEnglish VARCHAR(255) NOT NULL
+            );
+    </update>
+
+</mapper>

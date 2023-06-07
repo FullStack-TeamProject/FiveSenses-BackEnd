@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.edu.main.mapper.DatabaseDefineMapper">
+    <resultMap id="DatabaseDefineResultMap" type="kr.co.edu.main.entity.DatabaseDefine">
+        <id property="idx" column="id"/>
+        <result property="databaseDirectionExpressId" column="databaseDirectionExpressId"/>
+        <result property="databaseOrder" column="DatabaseOrder"/>
+        <result property="databaseIdx" column="DatabaseIdx"/>
+        <collection property="database" resultMap="kr.co.edu.main.mapper.DatabaseMapper.DatabaseResultMap"/>
+    </resultMap>
+
+    <update id="createTable">
+        CREATE TABLE IF NOT EXISTS DatabaseDefine (
+            idx SERIAL PRIMARY KEY,
+            DatabaseDirectionExpressId VARCHAR(255) NOT NULL,
+            DatabaseOrder INT NOT NULL,
+            DatabaseIdx INT NOT NULL
+            CONSTRAINT fk_spring_DatabaseIdx REFERENCES Database(id)
+            );
+    </update>
+
+</mapper>

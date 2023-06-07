@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.edu.main.mapper.ColumnMapper">
+    <resultMap id="ColumnResultMap" type="kr.co.edu.main.entity.Column">
+        <id property="idx" column="idx"/>
+        <result property="columnOrigin" column="ColumnOrigin"/>
+        <result property="columnName" column="ColumnName"/>
+        <result property="columnKoreaName" column="ColumnKoreaName"/>
+        <result property="columnType" column="ColumnType"/>
+        <result property="columnMinSize" column="ColumnMinSize"/>
+        <result property="columnMaxSize" column="ColumnMaxSize"/>
+        <result property="columnTurn" column="ColumnTurn"/>
+        <result property="domainId" column="DomainId"/>
+        <result property="databaseId" column="DatabaseId"/>
+        <collection property="domain" resultMap="kr.co.edu.main.mapper.DomainMapper.DomainResultMap"/>
+        <collection property="database" resultMap="kr.co.edu.main.mapper.DatabaseMapper.DatabaseResultMap"/>
+    </resultMap>
+
+    <update id="createTable">
+        CREATE TABLE IF NOT EXISTS ColumnTable (
+            idx SERIAL PRIMARY KEY,
+            ColumnOrigin VARCHAR(255) NOT NULL,
+            ColumnName VARCHAR(255) NOT NULL,
+            ColumnKoreaName VARCHAR(255) NOT NULL,
+            ColumnType VARCHAR(255) NOT NULL,
+            ColumnMinSize INT NOT NULL,
+            ColumnMaxSize INT NOT NULL,
+            ColumnTurn VARCHAR(255) NOT NULL,
+            DomainId INT NOT NULL
+            CONSTRAINT fk_spring_DomainId REFERENCES DomainTable(id),
+            DatabaseId INT NOT NULL
+            CONSTRAINT fk_spring_DatabaseId REFERENCES Database(id)
+            );
+    </update>
+
+    <insert id="insertTable">
+        INSERT INTO ColumnTable ( columnOrigin, columnName, columnKoreaName,columnType, columnMinSize, columnMaxSize, columnTurn,domainId,databaseId)
+        VALUES ( #{columnOrigin}, #{columnName},#{columnKoreaName},#{columnType}, #{columnMinSize}, #{columnMaxSize}, #{columnTurn},#{domainId},#{databaseId})
+    </insert>
+
+</mapper>

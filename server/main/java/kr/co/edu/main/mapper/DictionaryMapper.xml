@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.edu.main.mapper.DictionaryMapper">
+    <resultMap id="DictionaryResultMap" type="kr.co.edu.main.entity.Dictionary">
+        <id property="idx" column="idx"/>
+        <result property="dictionaryFine" column="DictionaryFine"/>
+        <result property="dictionaryCreateDate" column="DictionaryCreateDate"/>
+        <result property="dictionaryCreateName" column="DictionaryCreateName"/>
+        <result property="dictionaryModifyDate" column="DictionaryModifyDate"/>
+        <result property="dictionaryModifyName" column="DictionaryModifyName"/>
+        <result property="dictionaryKorean" column="DictionaryKorean"/>
+        <result property="dictionaryEnglish" column="DictionaryEnglish"/>
+        <result property="dictionaryEnglishAb" column="DictionaryEnglishAb"/>
+    </resultMap>
+
+    <update id="createTable">
+        CREATE TABLE IF NOT EXISTS Dictionary(
+        id SERIAL PRIMARY KEY,
+        DictionaryCreateDate VARCHAR(255) NOT NULL,
+        DictionaryCreateName VARCHAR(255) NOT NULL,
+        DictionaryModifyDate VARCHAR(255) NOT NULL,
+        DictionaryModifyName VARCHAR(255) NOT NULL,
+        DictionaryKorean VARCHAR(255) NOT NULL,
+        DictionaryEnglish VARCHAR(255) NOT NULL,
+        DictionaryEnglishAb VARCHAR(255) NOT NULL
+            );
+    </update>
+
+</mapper>

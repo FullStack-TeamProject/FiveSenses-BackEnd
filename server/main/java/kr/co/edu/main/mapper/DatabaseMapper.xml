@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.edu.main.mapper.DatabaseMapper">
+    <resultMap id="DatabaseResultMap" type="kr.co.edu.main.entity.Database">
+        <id property="idx" column="idx"/>
+        <result property="databaseName" column="databaseName"/>
+        <result property="databaseKorean" column="databaseKorean"/>
+        <result property="databaseStandWehter" column="databaseStandWehter"/>
+        <result property="originalFileIdx" column="OriginalFileIdx"/>
+        <collection property="originalFile" resultMap="kr.co.edu.main.mapper.OriginalFileMapper.OriginalFileResultMap"/>
+    </resultMap>
+
+    <update id="createTable">
+        CREATE TABLE IF NOT EXISTS Database (
+            id SERIAL PRIMARY KEY,
+            databaseName VARCHAR(255) NOT NULL,
+            databaseKorean VARCHAR(255) NOT NULL,
+            databaseStandWehter VARCHAR(255) NOT NULL,
+            OriginalFileIdx INT NOT NULL
+            CONSTRAINT fk_spring_OriginalFileIdx REFERENCES OriginalFile(id)
+            );
+    </update>
+
+    <insert id="insertData">
+        INSERT INTO database ( databaseName, databaseKorean, databaseStandWehter,originalFileIdx)
+        VALUES ( #{databaseName}, #{databaseKorean},#{databaseStandWehter},#{OriginalFileIdx})
+    </insert>
+
+    <select id="selectAll">
+        SELECT *
+        FROM Database;
+    </select>
+
+</mapper>

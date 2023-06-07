@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+	작성자 : 최정우
+	작성일 : 2022.09.01
+	내용 : Sample Mapper 입니다.
+ -->
+<mapper namespace="kr.co.edu.main.dao.MainDAO">
+
+    <!-- resultMap sample
+    <resultMap id="CrawlingSiteResult" type="CrawlingSite">
+        <result property="crawlingSiteSeq" column="crawling_site_seq"/>
+        <result property="site" column="site"/>
+        <collection property="CrawlingChannels" column="{crawlingSiteSeq = crawling_site_seq}" javaType="java.util.ArrayList" ofType="CrawlingChannel" select="getCrawlingChannelList" />
+    </resultMap> -->
+
+    <!--
+        작성자 : 000
+        작성일 : 2023.04.28
+        내용 : 데이터 조회 테스트
+     -->
+    <select id="testDataSelectList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        SELECT
+            test_seq,
+            test_title,
+            test_content,
+            TO_CHAR(test_create_datetime, 'YYYY-MM-DD HH24:MI') AS test_create_datetime
+            <!--, test_create_user AS testCreateUser
+            , test_update_datetime AS testUpdateDatetime
+            , test_update_user AS testUpdateUser-->
+        FROM
+            test_table
+    </select>
+
+</mapper>
